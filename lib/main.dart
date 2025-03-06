@@ -4,7 +4,15 @@ void main() {
   runApp(MaterialApp(home: NinjaCard()));
 }
 
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
+  @override
+  State<NinjaCard> createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+
+  int ninjaLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +23,18 @@ class NinjaCard extends StatelessWidget {
         backgroundColor: Colors.grey[800],
         elevation: 0.0,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState( () {
+            ninjaLevel += 1;
+          } );
+        },
+        backgroundColor: Colors.grey[800],
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+          ),    
+        ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
         child: Column(
@@ -43,12 +63,12 @@ class NinjaCard extends StatelessWidget {
             ),
             SizedBox(height: 30.0),
             Text(
-              'CURRENT NEWEST ALBUM',
+              'CURRENT RAP LEVEL',
               style: TextStyle(color: Colors.grey, letterSpacing: 2.0),
             ),
             SizedBox(height: 10.0),
             Text(
-              'CHROMKOPIA',
+              '$ninjaLevel',
               style: TextStyle(
                 color: const Color.fromARGB(255, 255, 200, 18),
                 letterSpacing: 2.0,
